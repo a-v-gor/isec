@@ -11,9 +11,9 @@ export default function createPage() {
   const main = returnElement({tag: 'main', classes: ['main']});
   const mainWrapper = returnElement({tag: 'div', classes: ['wrapper']});
   const form = returnElement({tag: 'form', classes: ['form']});
-  const labelTextInput = returnElement({tag: 'label', classes: ['label'], attrib: [{name: 'for', value: 'text-input'}], textContent: 'Оригинальный текст:'});
+  const labelTextInput = returnElement({tag: 'label', classes: ['label'], attrib: [{name: 'for', value: 'text-input'}], textContent: 'Текст из буфера обмена:'});
   const textInput = state.textInput;
-  const labelTextOutput = returnElement({tag: 'label', classes: ['label'], attrib: [{name: 'for', value: 'text-output'}], textContent: 'Ссылки:'});
+  const labelTextOutput = returnElement({tag: 'label', classes: ['label'], attrib: [{name: 'for', value: 'text-output'}], textContent: 'Скопированный в буфер обмена текст:'});
   const textOutput = state.textOutput;
 
   const footer = returnElement({tag: 'footer', classes: ['footer']});
@@ -23,7 +23,7 @@ export default function createPage() {
   footerWrapper.append(copyright);
   footer.append(footerWrapper);
   form.append(labelTextInput, textInput, labelTextOutput, textOutput);
-  mainWrapper.append(form);
+  mainWrapper.append(state.buttonCreate, form);
   main.append(mainWrapper);
   headerWrapper.append(title);
   header.append(headerWrapper);

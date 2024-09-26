@@ -8,8 +8,11 @@ const convertText = () => {
     (clipText) => {
       state.textInput.innerText = clipText;
       const links = clipText.match(/\b(hx\w+\[\:\]\/\/)*(\w+\[\.\])+(\S)*\b/gim);
-      state.textOutput.value = links.join('; ');
-      navigator.clipboard.writeText(links.join('; '));
+      const reBrackets = /[(\[)*\]]/gm;
+      let resultText = links.join('; ').replace(reBrackets, '');
+      resultText = resultText.replaceAll('hxxp', 'http');
+      state.textOutput.value = resultText;
+      navigator.clipboard.writeText(resultText);
     }
   )
   .catch(
@@ -19,3 +22,4 @@ const convertText = () => {
 
 document.addEventListener('DOMContentLoaded', createPage);
 window.addEventListener('focus', convertText);
+state.buttonCreate.addEventListener('click', convertText);

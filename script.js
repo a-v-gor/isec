@@ -7,7 +7,7 @@ const convertText = () => {
   .then(
     (clipText) => {
       state.textInput.innerText = clipText;
-      const links = clipText.match(/\b(hx\w+\[\:\]\/\/)*(\w+\[\.\])+(\S)*\b/gim);
+      const links = clipText.match(/\b(\S)+(\w+\[\.\])+(\S)*\b/gim);
       const reBrackets = /[(\[)*\]]/gm;
       let resultText = links.join('; ').replace(reBrackets, '');
       resultText = resultText.replaceAll('hxxp', 'http');
